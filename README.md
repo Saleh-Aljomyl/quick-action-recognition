@@ -1,49 +1,23 @@
-# Quick Human Actions Recognition
+## Experiments
+| **Scenario** | **Model** | **Temporal** | **Downsample** | **Training Acc** | **Testing Acc** |
+| :------ | :------: | :------: | :------: | :------: | :------: |
+| 0 | Normal | 09 | 0.25 | 94.67% | 93.50% |  
+| 1 | Normal | 13 | 0.25 | 94.87% | 92.79% | 
+| 2 | Small | 09 | 0.25 | 94.02% | 93.27% |  
+| 3 | Small | 13 | 0.25 | 95.17% | 93.55% |  
+| 4 | Small | 09 | 0.33 | 93.88% | 93.50% |  
+| 5 | Small | 13 | 0.33 | 94.86% | 92.54% |  
+| 6 | Normal | 09 | 0.33 | 93.56% | 92.31% |  
+| 7 | Normal | 13 | 0.33 | 96.18% | 94.73% |  
+| 8 | Normal | 05 | 0.50 | 91.78% | 92.11% |  
+| 9 | Small | 05 | 0.50 | 93.43% | 93.18% | 
+| 10 | Normal | 07 | 0.50 | 95.74% | 95.24% |  
+| 11 | Small | 07 | 0.50 | 93.97% | 93.12% |  
+| 12 | Normal | 15 | 0.50 | 95.93% | 92.39% |  
+| 13 | Small | 15 | 0.50 | 95.25% | 94.39% |  
 
-## Introduction
-This repository holds the codebase and dataset for the project:
-
-**Spatial Temporal Graph Convolutional Networks for the Recognition of Quick Human Actions**
-
-## Prerequisites
-- Python3 (>3.5)
-- [PyTorch](http://pytorch.org/)
-
-## Data Preparation
-We Experimented on the 3D Skeletal Data of **NTU-RGB+D**. <br/>
-The pre-processed data can be downloaded from
-[GoogleDrive](https://drive.google.com/open?id=103NOL9YYZSW1hLoWmYnv5Fs8mK-Ij7qb). <br/>
-After downloading the data, extract the "NTU-RGB-D" folder into path.
-   
-## Downsampling
-To create a dataset of fast actions, we downsample the NTU-RGB+D dataset. <br/>
-The downsampling is done by taking one frame and leaving another, halving the number of frames. <br>
-Run "downsample.py" to downsample the desired data.
-
-## Data Reduction (optional)
-We provide "create_small_data.py" that creates a smaller data from the original data by selecting a number of actions out of all 60 actions.
-The desired actions can be selected in the code based on their labels on [the NTU-RGB+D website](http://rose1.ntu.edu.sg/datasets/actionrecognition.asp).
-
-## Visualization
-We provide visualization of the 3D skeletal data of **NTU-RGB+D** on MATLAB. <br/>
-
-![output](https://user-images.githubusercontent.com/68873733/117915304-af1f7600-b2ed-11eb-811f-313261572cff.gif)
-
-More details can be found on the "visualize" folder.
-
-## Training
-A model can be trained by running "main.py". The results will show in the "results" folder. <br/> 
-In case of using a smaller data, some modifications to the code are needed, they're detailed in the code.
-
-## Results
-Some results of different experiments are shown here:
-
-| Model | Temporal Kernel Size | Downsampled NTU-RGB+D <br/> (60 actions)| Downsampled NTU-RGB+D <br/> (10 actions) |
-| :------ | :------: | :------: | :------: |
-| Model I (ST-GCN) [1] | 9 | 86.02% | 93.39% |  
-| **Model II** (Proposed)| **9** | **85.59%** | **94.01%** | 
-| Model I (ST-GCN) [1] | 13 | 86.53% | 94% |  
-| **Model II** (Proposed)| **13** | **84.7%** | **93.29%** | 
-
-[1] Sijie Yan et al., 2018. Spatial Temporal Graph Convolutional Networks for Skeleton-Based Action Recognition.
-
+### Notes: 
+- All above experminets were done on the 10 actions dataset. The selected 10 actions of the NTU-RGB+D are as follows: _drink water, brush hair, hand waving, wipe face, rub two hands, jump up, staggering, falling down, walking towards and take off a shoe._
+- "Normal" refers to **Model I**, Small refers to **Model II**.
+- "Temporal" refers to the temporal kernel size.
+- "Downsample" refers to the downsampling rate, for example: 0.25 means that the new number of frames is 1/4th of the original one.
